@@ -295,6 +295,8 @@ a.takeaway:hover, a.takeaway:focus-visible { background: var(--green-light); bor
 .site-footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .site-footer a { color: var(--color-text-muted); text-decoration: none; }
 .site-footer a:hover { color: var(--color-link); }
+.footer-credit { margin-top: 12px; justify-content: flex-start; }
+.footer-credit p { margin: 0; font-size: 0.85rem; color: var(--color-text-muted); }
 
 /* ----------------------------------------------------------------------
    RESPONSIVE
