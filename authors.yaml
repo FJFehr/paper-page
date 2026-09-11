@@ -1,0 +1,51 @@
+# Two affiliations, one author (Kofi Mensah) belonging to both -- this is
+# the deliberate test case for the per-author-affiliation fix documented in
+# docs/02-comparison-matrix.md and implemented in template/js/people.js.
+#
+# NOTE: template/js/yaml-lite.js does not support flow-style lists
+# ("[a, b]") -- every list below (including a single-item affiliations
+# list) uses block style ("- a" on its own indented line).
+affiliations:
+  - id: oxu
+    name: University of Oxford
+    logo: assets/logos/oxu.svg
+  - id: aqi
+    name: Aquatic Intelligence Institute
+    logo: assets/logos/aqi.svg
+
+authors:
+  - name: Jane Smith
+    url: https://example.org/jane-smith
+    affiliations:
+      - oxu
+    equal_contribution: true
+    corresponding: false
+  - name: Amara Okafor
+    url: https://example.org/amara-okafor
+    affiliations:
+      - oxu
+    equal_contribution: true
+    corresponding: false
+  - name: Erik Lindqvist
+    url: null
+    affiliations:
+      - aqi
+    equal_contribution: false
+    corresponding: false
+  - name: Kofi Mensah
+    url: https://example.org/kofi-mensah
+    affiliations:
+      - oxu
+      - aqi
+    equal_contribution: false
+    corresponding: false
+  - name: Priya Shah
+    url: https://example.org/priya-shah
+    affiliations:
+      - aqi
+    equal_contribution: false
+    corresponding: true
+
+correspondence:
+  name: Priya Shah
+  email: priya@example.org

@@ -1,0 +1,75 @@
+paper:
+  title: "Do Penguins Dream of Embeddings? A Benchmark for Latent Aquatic Reasoning"
+  short_title: "Penguin Embeddings"
+  description: "A benchmark and template demonstration paper testing whether latent embeddings support aquatic reasoning tasks, used here to exercise every block type in the paper-page template."
+  year: 2026
+  venue: null
+  doi: null
+  arxiv: null
+
+# One entry drives the hero, <title>, OpenGraph/Twitter/Scholar meta, and
+# citation UI -- see docs/01-principles.md #2. Until scripts/build.py exists
+# (tasks/00-overview.md's "out of scope" note), index.html's <head> tags are
+# hand-synced to match this file rather than generated from it.
+resources:
+  paper: null
+  code: https://github.com/example/penguin-embeddings
+  dataset: https://huggingface.co/datasets/example/penguin-embeddings
+  demo: null
+  slides: null
+
+social:
+  image: assets/og-image.svg
+  favicon: assets/favicon.svg
+  canonical_url: null
+
+theme:
+  palette: sage
+  mode: auto
+  overrides: {}
+
+footer:
+  note: "© 2026 · Built with the paper-page template."
+
+sections:
+  - id: overview
+    title: Overview
+    nav: true
+    blocks:
+      - type: callout
+        style: tldr
+        source: content/tldr.md
+      - type: markdown
+        source: content/overview.md
+      - type: takeaways
+        source: content/takeaways.yaml
+
+  - id: method
+    title: Method
+    nav: true
+    blocks:
+      - type: markdown
+        source: content/method.md
+      - type: table
+        source: content/taxonomy.md
+      - type: figure
+        src: assets/figures/pipeline.svg
+        alt: "Pipeline diagram: raw observations flow through an encoder into a latent aquatic-reasoning space, then a decoder produces the benchmark's answers."
+        caption: "Figure 1. The Penguin Embeddings pipeline: encode, reason in latent space, decode."
+        position: right
+
+  - id: results
+    title: Results
+    nav: true
+    blocks:
+      - type: results_table
+        source: content/results-table.yaml
+      - type: markdown
+        source: content/results.md
+
+  - id: cite
+    title: Cite
+    nav: true
+    blocks:
+      - type: citation
+        source: citation.bib

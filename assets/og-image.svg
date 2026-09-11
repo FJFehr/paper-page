@@ -1,0 +1,13 @@
+<!-- Placeholder OG/Twitter card image (1200x630 viewBox). SVG has inconsistent
+     crawler support for social-card previews -- a real fork should export
+     this as a PNG at the same dimensions. See tasks/06-demo-content.md. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="ogTitle">
+  <title id="ogTitle">Do Penguins Dream of Embeddings? A Benchmark for Latent Aquatic Reasoning</title>
+  <rect width="1200" height="630" fill="#F5F0E6"/>
+  <rect x="0" y="0" width="1200" height="10" fill="#328132"/>
+  <text x="80" y="220" font-family="Georgia, serif" font-size="56" font-weight="700" fill="#2A2521">Do Penguins Dream</text>
+  <text x="80" y="290" font-family="Georgia, serif" font-size="56" font-weight="700" fill="#2A2521">of Embeddings?</text>
+  <text x="80" y="350" font-family="Georgia, serif" font-size="30" fill="#6E6759">A Benchmark for Latent Aquatic Reasoning</text>
+  <text x="80" y="420" font-family="system-ui, sans-serif" font-size="24" fill="#256025">Smith, Okafor, Lindqvist, Mensah, Shah</text>
+  <text x="80" y="560" font-family="system-ui, sans-serif" font-size="20" fill="#6E6759">University of Oxford · Aquatic Intelligence Institute</text>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="oxuTitle">
+  <title id="oxuTitle">University of Oxford (placeholder logo)</title>
+  <circle cx="50" cy="50" r="46" fill="#FFFFFF" stroke="#328132" stroke-width="4"/>
+  <text x="50" y="59" text-anchor="middle" font-family="Georgia, serif" font-size="30" font-weight="700" fill="#2A2521">OxU</text>
+</svg>

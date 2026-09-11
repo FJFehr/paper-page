@@ -1,0 +1,313 @@
+/* ============================================================================
+   PAPER-PAGE ENGINE STYLESHEET
+   ============================================================================
+   Every rule below reads colours/fonts/sizes only from the CSS custom
+   properties declared under THEME TOKENS. template/js/theme.js overwrites
+   those properties at runtime from project.yaml's theme: block (see
+   tasks/03-engine-js-foundation.md) -- the literal values in :root and
+   [data-theme="dark"] below are only the no-JS fallback (same convention as
+   when-rubrics-fail/legal-reward-bench). They default to the "sage" named
+   palette (template/js/palettes.js) so a JS-disabled visitor still sees a
+   coherent, on-brand page rather than unstyled HTML.
+   ============================================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-padding-top: var(--header-height, 72px); }
+body { margin: 0; }
+
+/* ----------------------------------------------------------------------
+   THEME TOKENS
+   ---------------------------------------------------------------------- */
+:root {
+  --color-bg: #F5F0E6;
+  --color-surface: #FBF7EF;
+  --color-text: #2A2521;
+  --color-text-muted: #6E6759;
+  --color-border: #DED4C0;
+  --color-rule: #C9BC9E;
+  --color-link: #256025;
+  --color-link-hover: #16350F;
+  --color-focus: #256025;
+
+  --green-dark: #328132;   --green-mid: #61CA53;   --green-light: #DCF5DC;   --green-text: #256025;
+  --purple-dark: #75639B;  --purple-mid: #B7A9D6;  --purple-light: #EEEAF5;  --purple-text: #5F5085;
+  --orange-dark: #D98A45;  --orange-mid: #F1C38F;  --orange-light: #FBF1E6;  --orange-text: #8C4E1C;
+
+  --font-serif: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  --font-size-hero-title: clamp(1.7rem, 3.4vw, 2.5rem);
+  --font-size-body: 17px;
+  --font-size-body-mobile: 16px;
+
+  --content-width: 900px;
+  --prose-width: 700px;
+  --radius: 10px;
+  --radius-pill: 999px;
+}
+
+[data-theme="dark"] {
+  --color-bg: #1E1A16;
+  --color-surface: #28231E;
+  --color-text: #EDE6D8;
+  --color-text-muted: #A79C8A;
+  --color-border: #3A332B;
+  --color-rule: #453D33;
+  --color-link: #6E9C64;
+  --color-link-hover: #86B77B;
+  --color-focus: #6E9C64;
+
+  --green-dark: #61CA53;   --green-mid: #61CA53;   --green-light: #26301F;   --green-text: #6E9C64;
+  --purple-dark: #B7A9D6;  --purple-mid: #B7A9D6;  --purple-light: #2A2733;  --purple-text: #C6BADF;
+  --orange-dark: #D98A45;  --orange-mid: #F1C38F;  --orange-light: #332822;  --orange-text: #E2A468;
+}
+
+/* ----------------------------------------------------------------------
+   BASE
+   ---------------------------------------------------------------------- */
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  line-height: 1.6;
+}
+a { color: var(--color-link); }
+a:hover, a:focus-visible { color: var(--color-link-hover); }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--color-surface); color: var(--color-text);
+  padding: 10px 16px; border-radius: var(--radius);
+}
+.skip-link:focus { left: 12px; top: 12px; }
+
+#scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+  background: var(--green-dark); z-index: 200; transition: width 80ms linear;
+}
+
+.wrap {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flow-root; /* contains floated figures */
+}
+
+/* ----------------------------------------------------------------------
+   HEADER / NAV
+   ---------------------------------------------------------------------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--color-bg), transparent 8%);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--color-border);
+}
+.nav-inner {
+  max-width: var(--content-width); margin: 0 auto; padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.wordmark { font-family: var(--font-serif); font-weight: 700; text-decoration: none; color: var(--color-text); }
+#site-nav { display: flex; align-items: center; gap: 18px; }
+#site-nav a { color: var(--color-text-muted); text-decoration: none; font-size: 0.92rem; }
+#site-nav a[aria-current="true"] { color: var(--green-text); text-decoration: underline; text-underline-offset: 4px; }
+#theme-toggle {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text);
+  cursor: pointer; font-size: 1rem; line-height: 1;
+}
+#theme-toggle:hover { border-color: var(--green-dark); }
+
+/* ----------------------------------------------------------------------
+   HERO
+   ---------------------------------------------------------------------- */
+.hero { padding: 48px 0 40px; }
+#hero-title {
+  font-family: var(--font-serif); font-size: var(--font-size-hero-title);
+  line-height: 1.25; max-width: var(--prose-width); margin: 0 0 20px;
+}
+#author-list { list-style: none; margin: 0 0 8px; padding: 0; display: flex; flex-wrap: wrap; gap: 0 4px; }
+.author { font-size: 0.98rem; }
+.author a { text-decoration: none; }
+.author a:hover { text-decoration: underline; }
+.author-noLink { color: var(--color-text); }
+.author-sep { color: var(--color-text-muted); }
+#equal-contribution-note { font-size: 0.85rem; color: var(--color-text-muted); margin: 0 0 20px; }
+
+#affiliation-logos { display: flex; align-items: center; gap: 20px; margin: 4px 0 24px; flex-wrap: wrap; }
+#affiliation-logos img { height: 34px; width: auto; }
+[data-theme="dark"] #affiliation-logos img.affiliation-logo-invert { filter: invert(1) brightness(1.6); }
+
+#resource-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border); background: var(--color-surface);
+  color: var(--color-text); text-decoration: none; font-size: 0.92rem;
+}
+.btn:hover { border-color: var(--green-dark); background: var(--green-light); color: var(--color-text); }
+.btn-disabled { opacity: 0.5; cursor: default; }
+.btn-disabled:hover { border-color: var(--color-border); background: var(--color-surface); }
+.btn-cite { border-color: var(--green-dark); }
+.btn-icon { width: 16px; height: 16px; display: inline-block; }
+.btn-icon-arxiv { width: auto; height: 14px; }
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+#correspondence { font-size: 0.9rem; color: var(--color-text-muted); }
+#correspondence a { color: var(--color-link); }
+
+/* ----------------------------------------------------------------------
+   MAIN / SECTION RHYTHM
+   ---------------------------------------------------------------------- */
+main#main > section {
+  padding: 56px 0; border-top: 1px solid var(--color-border);
+}
+/* Consecutive sections that belong to the same logical group in project.yaml
+   (i.e. every section except the first rendered) keep this rhythm; the very
+   first rendered section reads as a continuation of the hero, not a new
+   "chapter" -- no border/top padding. Unlike the current repos' hardcoded
+   #overview/#problem/#takeaways rule, this targets the FIRST section render.js
+   generates, generically, whatever its id. */
+main#main > section:first-child { border-top: none; padding-top: 8px; }
+
+/* Descendant (not just direct-child) selectors -- a section's own title is
+   a direct .wrap > h2, but mdBlock's heading pass (template/js/markdown.js)
+   can also emit h2/h3/h4 nested one level deeper inside a block's own
+   container div, and both should read consistently. */
+main#main h2 {
+  font-family: var(--font-serif); font-size: 1.5rem; margin: 0 0 20px;
+}
+main#main h3 {
+  font-family: var(--font-serif); font-size: 1.15rem; margin: 28px 0 12px;
+}
+main#main h4 {
+  font-family: var(--font-sans); font-size: 1rem; font-weight: 700; margin: 20px 0 8px;
+}
+
+.prose, .block-markdown {
+  max-width: var(--prose-width); margin: 0 auto;
+}
+.prose p, .block-markdown p { margin: 0 0 16px; }
+.prose ul, .prose ol, .block-markdown ul, .block-markdown ol { max-width: var(--prose-width); margin: 0 auto 16px; padding-left: 1.4em; }
+
+.block-unsupported {
+  max-width: var(--prose-width); margin: 0 auto 16px;
+  padding: 12px 16px; border: 1px dashed var(--color-border); border-radius: var(--radius);
+  color: var(--color-text-muted); font-size: 0.9rem;
+}
+
+/* ----------------------------------------------------------------------
+   FIGURES
+   ---------------------------------------------------------------------- */
+figure { max-width: var(--prose-width); margin: 24px auto; text-align: center; }
+figure img { max-width: 100%; border-radius: var(--radius); }
+figcaption { font-size: 0.88rem; color: var(--color-text-muted); margin-top: 8px; }
+
+.fig-left, .fig-right { max-width: 45%; margin-bottom: 1em; }
+.fig-left { float: left; margin: 0.3em 24px 1em 0; }
+.fig-right { float: right; margin: 0.3em 0 1em 24px; }
+
+/* ----------------------------------------------------------------------
+   TABLES (qualitative + results)
+   ---------------------------------------------------------------------- */
+.table-scroll {
+  max-width: var(--prose-width); margin: 0 auto 24px;
+  border: 1px solid var(--color-border); border-radius: var(--radius);
+  overflow-x: auto;
+}
+.md-table { table-layout: fixed; width: 100%; min-width: 480px; border-collapse: collapse; font-size: 0.92rem; }
+.md-table caption { text-align: left; padding: 10px 14px; font-size: 0.85rem; color: var(--color-text-muted); }
+.md-table thead th {
+  font-family: var(--font-serif); font-weight: 700; text-align: left;
+  padding: 10px 14px; border-bottom: 2px solid var(--orange-text);
+}
+.md-table td { padding: 10px 14px; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+.md-table tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--color-bg), var(--color-border) 55%);
+}
+[data-theme="dark"] .md-table tbody tr:nth-child(even) td { background: var(--color-surface); }
+.md-table-key { font-family: var(--font-serif); font-weight: 700; }
+.md-table em { font-style: italic; color: var(--orange-text); }
+.md-table s { color: var(--color-text-muted); }
+
+.results-table td[data-col-type="number"], .results-table th[data-col-type="number"] {
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.results-table td.best { font-weight: 700; color: var(--orange-text); }
+
+@media (max-width: 600px) {
+  .md-table td:nth-child(3), .md-table th:nth-child(3) { display: none; }
+  .md-table td, .md-table thead th { padding: 8px 10px; font-size: 0.85rem; }
+  .fig-left, .fig-right { float: none; max-width: var(--prose-width); margin: 0.3em auto 1em; text-align: center; }
+}
+
+/* ----------------------------------------------------------------------
+   TAKEAWAYS
+   ---------------------------------------------------------------------- */
+.takeaways-grid {
+  display: flex; flex-direction: column; gap: 16px;
+  max-width: var(--prose-width); margin: 0 auto 24px;
+}
+.takeaway {
+  display: block; background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius); padding: 14px 18px; text-decoration: none; color: inherit;
+}
+a.takeaway:hover, a.takeaway:focus-visible { background: var(--green-light); border-color: var(--green-dark); }
+.takeaway strong { color: var(--green-text); }
+
+/* ----------------------------------------------------------------------
+   CALLOUT
+   ---------------------------------------------------------------------- */
+.callout {
+  max-width: var(--prose-width); margin: 0 auto 24px;
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-left: 4px solid var(--green-dark); border-radius: var(--radius);
+  padding: 16px 20px;
+}
+.callout p { margin: 0 0 10px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout strong { color: var(--green-text); font-family: var(--font-serif); }
+.callout-tldr { border-left-color: var(--green-dark); }
+
+/* ----------------------------------------------------------------------
+   CITATION
+   ---------------------------------------------------------------------- */
+.citation-block { max-width: var(--prose-width); margin: 0 auto; }
+#bibtex-block {
+  background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius);
+  padding: 16px; font-family: var(--font-mono); font-size: 0.85rem; overflow-x: auto; white-space: pre;
+}
+#copy-bibtex-btn {
+  margin-top: 12px; padding: 8px 16px; border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text);
+  cursor: pointer; font-size: 0.9rem;
+}
+#copy-bibtex-btn.copied { border-color: var(--green-dark); color: var(--green-text); }
+
+/* ----------------------------------------------------------------------
+   FOOTER
+   ---------------------------------------------------------------------- */
+.site-footer { border-top: 1px solid var(--color-border); padding: 32px 0; margin-top: 24px; }
+.site-footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.site-footer a { color: var(--color-text-muted); text-decoration: none; }
+.site-footer a:hover { color: var(--color-link); }
+
+/* ----------------------------------------------------------------------
+   RESPONSIVE
+   ---------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  main#main > section { padding: 40px 0; }
+  .nav-inner { flex-wrap: wrap; }
+  #site-nav { gap: 12px; }
+}
+@media (max-width: 480px) {
+  body { font-size: var(--font-size-body-mobile); }
+  .hero { padding-top: 32px; }
+  #resource-buttons { gap: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }

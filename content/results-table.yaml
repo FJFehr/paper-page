@@ -1,0 +1,43 @@
+# The results_table block -- the net-new "leaderboard" primitive (see
+# docs/03-component-vocabulary.md, template/js/results-table.js). Three
+# numeric columns with different `better` directions and best values
+# deliberately spread across different rows, so the highlight logic is
+# actually exercised rather than trivially always-first-row.
+caption: "LAR benchmark: five models, three metrics (higher is better for LAR-Forage and LAR-Combined; lower is better for LAR-Thermo error)"
+columns:
+  - id: model
+    label: Model
+    type: text
+  - id: lar_forage
+    label: LAR-Forage ↑
+    type: number
+    better: higher
+  - id: lar_thermo_error
+    label: LAR-Thermo error ↓
+    type: number
+    better: lower
+  - id: lar_combined
+    label: LAR-Combined ↑
+    type: number
+    better: higher
+rows:
+  - model: "Baseline-Small"
+    lar_forage: 0.58
+    lar_thermo_error: 0.41
+    lar_combined: 0.40
+  - model: "Baseline-Large"
+    lar_forage: 0.64
+    lar_thermo_error: 0.37
+    lar_combined: 0.45
+  - model: "PenguinNet-S"
+    lar_forage: 0.71
+    lar_thermo_error: 0.33
+    lar_combined: 0.55
+  - model: "PenguinNet-M"
+    lar_forage: 0.78
+    lar_thermo_error: 0.30
+    lar_combined: 0.52
+  - model: "PenguinNet-L"
+    lar_forage: 0.76
+    lar_thermo_error: 0.28
+    lar_combined: 0.50

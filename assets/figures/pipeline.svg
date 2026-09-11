@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="pipelineTitle">
+  <title id="pipelineTitle">Pipeline diagram: observations flow through an encoder into a latent aquatic-reasoning space, then a decoder produces the benchmark's answers.</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6E6759"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="480" height="360" fill="#FBF7EF"/>
+
+  <!-- Observations -->
+  <rect x="20" y="30" width="150" height="60" rx="10" fill="#FBF1E6" stroke="#D98A45" stroke-width="2"/>
+  <text x="95" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#2A2521">Observations</text>
+
+  <!-- Encoder -->
+  <rect x="20" y="150" width="150" height="60" rx="10" fill="#EEEAF5" stroke="#75639B" stroke-width="2"/>
+  <text x="95" y="185" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#2A2521">Encoder</text>
+
+  <!-- Latent space -->
+  <rect x="230" y="150" width="160" height="60" rx="10" fill="#DCF5DC" stroke="#328132" stroke-width="2"/>
+  <text x="310" y="178" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#2A2521">Latent aquatic-</text>
+  <text x="310" y="196" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#2A2521">reasoning space</text>
+
+  <!-- Decoder -->
+  <rect x="290" y="270" width="150" height="60" rx="10" fill="#EEEAF5" stroke="#75639B" stroke-width="2"/>
+  <text x="365" y="305" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#2A2521">Decoder</text>
+
+  <!-- LAR tasks -->
+  <rect x="290" y="30" width="150" height="60" rx="10" fill="#FBF1E6" stroke="#D98A45" stroke-width="2"/>
+  <text x="365" y="58" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#2A2521">LAR task</text>
+  <text x="365" y="76" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#2A2521">scores</text>
+
+  <!-- Arrows -->
+  <path d="M95,90 L95,150" fill="none" stroke="#6E6759" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M170,180 L230,180" fill="none" stroke="#6E6759" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M330,210 L365,270" fill="none" stroke="#6E6759" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M365,270 L365,90" fill="none" stroke="#6E6759" stroke-width="2" marker-end="url(#arrow)"/>
+</svg>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Favicon -- set once, matches project.yaml's social.favicon by hand until
+     scripts/build.py exists to generate this from project.yaml directly
+     (see tasks/00-overview.md's "out of scope" note). -->
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+<!-- ============================================================
+     Metadata below is PLACEHOLDER, hand-authored to match this demo
+     paper's own project.yaml (tasks/06-demo-content.md). Forking this
+     template today means updating project.yaml AND these tags by hand --
+     see docs/01-principles.md #2 and tasks/00-overview.md's "out of
+     scope" note. scripts/build.py (future) removes this duplication.
+     ============================================================ -->
+<title>Do Penguins Dream of Embeddings? A Benchmark for Latent Aquatic Reasoning</title>
+<meta name="description" content="A benchmark and template demonstration paper testing whether latent embeddings support aquatic reasoning tasks, used here to exercise every block type in the paper-page template.">
+<link rel="canonical" href="TODO">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Do Penguins Dream of Embeddings? A Benchmark for Latent Aquatic Reasoning">
+<meta property="og:description" content="A benchmark and template demonstration paper testing whether latent embeddings support aquatic reasoning tasks.">
+<meta property="og:image" content="TODO -- absolute URL to assets/og-image.svg">
+<meta property="og:url" content="TODO">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Do Penguins Dream of Embeddings? A Benchmark for Latent Aquatic Reasoning">
+<meta name="twitter:description" content="A benchmark and template demonstration paper testing whether latent embeddings support aquatic reasoning tasks.">
+<meta name="twitter:image" content="assets/og-image.svg">
+
+<meta name="citation_title" content="Do Penguins Dream of Embeddings? A Benchmark for Latent Aquatic Reasoning">
+<meta name="citation_author" content="Smith, Jane">
+<meta name="citation_author" content="Okafor, Amara">
+<meta name="citation_author" content="Lindqvist, Erik">
+<meta name="citation_author" content="Mensah, Kofi">
+<meta name="citation_author" content="Shah, Priya">
+
+<link rel="stylesheet" href="template/css/style.css">
+
+<!-- Engine scripts, in dependency order -->
+<script src="template/js/palettes.js"></script>
+<script src="template/js/theme.js"></script>
+
+<!-- ============================================================
+     THEME BOOTSTRAP -- applies a default palette + light/dark mode
+     before first paint (no flash of unstyled content). render.js
+     re-applies the *configured* palette once project.yaml loads -- a
+     brief palette swap is possible, not a layout flash. See
+     tasks/02-engine-shell.md's accepted tradeoff (build.py, deferred,
+     will remove this by inlining the configured palette statically).
+     ============================================================ -->
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem("theme");
+      var mode = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", mode);
+      if (typeof applyTheme === "function") applyTheme({ palette: "sage", overrides: {} }, mode);
+    } catch (e) {
+      /* localStorage/matchMedia unavailable -- default light stylesheet applies. */
+    }
+  })();
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="scroll-progress" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="wordmark" id="wordmark" href="#top"></a>
+    <nav id="site-nav" aria-label="Section"></nav>
+    <button id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">☾</button>
+  </div>
+</header>
+
+<section id="top" class="hero">
+  <div class="wrap">
+    <h1 id="hero-title"></h1>
+    <ul id="author-list"></ul>
+    <p id="equal-contribution-note" hidden>* Equal contribution</p>
+    <div id="affiliation-logos"></div>
+    <div id="resource-buttons"></div>
+    <p id="correspondence" hidden>
+      Correspondence: <span id="correspondence-name"></span>
+      (<a id="correspondence-email" href="#"></a>)
+    </p>
+  </div>
+</section>
+
+<!-- Entirely built by template/js/render.js from project.yaml's sections[] --
+     no per-paper markup belongs here, only what the engine generates. -->
+<main id="main"></main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div id="footer-note"></div>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<noscript>
+  <p style="padding:24px;max-width:700px;margin:0 auto;">
+    This page needs JavaScript to load its content (title, authors, sections) from
+    project.yaml/authors.yaml/content/. Please enable JavaScript, or see this
+    repository's source files directly.
+  </p>
+</noscript>
+
+<!-- Engine scripts, in dependency order. yaml-lite.js/palettes.js/theme.js are
+     loaded in <head> already (palettes.js/theme.js needed pre-paint; yaml-lite.js
+     is needed before render.js runs but has no pre-paint role). -->
+<script src="template/js/yaml-lite.js"></script>
+<script src="template/js/markdown.js"></script>
+<script src="template/js/tables.js"></script>
+<script src="template/js/results-table.js"></script>
+<script src="template/js/blocks.js"></script>
+<script src="template/js/people.js"></script>
+<script src="template/js/render.js"></script>
+
+</body>
+</html>

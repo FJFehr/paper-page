@@ -1,0 +1,15 @@
+# A bare root-level list (see template/js/yaml-lite.js's root-list handling)
+# -- four items, not the hardcoded three the source repos shipped with; see
+# docs/03-component-vocabulary.md's generalized `takeaways` component.
+- title: "One latent space, two skills."
+  body: "The same unsupervised embedding supports both foraging-route quality estimation and (partially) thermoregulation trade-off estimation, without task-specific fine-tuning."
+  anchor: "#results"
+- title: "Thermoregulation is underestimated."
+  body: "Probes recover foraging quality well but consistently underestimate thermoregulation cost -- see the LAR-Thermo column in the results table."
+  anchor: "#results"
+- title: "Scale helps, but not monotonically."
+  body: "Larger encoders improve LAR-Forage scores but plateau (and occasionally regress) on LAR-Thermo, suggesting the two sub-tasks pull the representation in different directions."
+  anchor: "#results"
+- title: "This page is the demo."
+  body: "Every block type in the paper-page template -- callout, markdown, takeaways, table, figure, results table, citation -- appears somewhere on this page."
+  anchor: null

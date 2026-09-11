@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="aqiTitle">
+  <title id="aqiTitle">Aquatic Intelligence Institute (placeholder logo)</title>
+  <circle cx="50" cy="50" r="46" fill="#FFFFFF" stroke="#75639B" stroke-width="4"/>
+  <path d="M18 58c8-10 16 10 24 0s16-10 24 0s16 10 16 10" fill="none" stroke="#5F5085" stroke-width="4" stroke-linecap="round"/>
+  <text x="50" y="38" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#2A2521">AQI</text>
+</svg>
