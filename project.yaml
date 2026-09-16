@@ -26,7 +26,11 @@ social:
 theme:
   palette: sage
   mode: auto
-  overrides: {}
+  # Leave blank for "no overrides" -- template/js/yaml-lite.js does not
+  # support flow-style maps ("{}"/"{a: b}"), same limitation as
+  # authors.yaml's flow-style-list note. A real override goes on its own
+  # indented "--custom-property-name: value" line below this key.
+  overrides:
 
 footer:
   note: "© 2026 · Built with the paper-page template."

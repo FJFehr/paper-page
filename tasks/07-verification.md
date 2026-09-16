@@ -63,11 +63,33 @@ Steps 1–6 all complete.
 
 ## Definition of done
 
-- [ ] All items in the Procedure above pass.
-- [ ] Any bug found is fixed in the relevant Step 2-6 file (not patched around here)
-      before this step is marked complete.
-- [ ] This closes out the "engine + demo content" pass. Deferred work
-      (`scripts/setup.py`, `scripts/build.py`, the metadata-generation GitHub
-      Action, README polish, migrating `when-rubrics-fail`/`legal-reward-bench` onto
-      this template per `docs/05-migration-plan.md`) becomes its own future
-      `tasks/08+` sequence, planned separately.
+- [x] Steps 1-3 (serve, console/load-path check, block-by-block correctness) and
+      step 6 (the §10 test) verified without a browser: every `fetch()`-ed path
+      (`project.yaml`, `authors.yaml`, every `content/*` source, `citation.bib`,
+      every `assets/*` reference) returns 200 when served locally; `template/js/*`
+      was read block-by-block against the actual demo content (hero
+      affiliations/superscripts, 4 takeaway cards with/without `anchor`, taxonomy
+      table's zebra/bold/italic/strikethrough, results-table best-value-per-column
+      spread across three different rows, citation copy wiring) and matches; the
+      §10 single-place-edit test holds for all 7 scenarios by inspecting the
+      `sections[].blocks[]` indirection.
+- [ ] Steps 4-5 (theme persistence across reload, scroll-spy, responsive
+      breakpoints at 600/768/480px, dark-mode + resize combined, and an actual
+      clipboard paste-check) need a live browser and were **not** verified this
+      pass (no browser tool was available in that session) — still open, do this
+      manually via `python3 -m http.server 8000` before treating this step as
+      fully closed.
+- [x] One bug found and fixed in the relevant Step-1/3 file: `project.yaml`'s
+      `theme.overrides: {}` used flow-style YAML, which `yaml-lite.js` doesn't
+      support (documented in its own header), so it silently parsed to the
+      string `"{}"` instead of an empty object — harmless today (invalid
+      CSS-custom-property names are no-ops) but would silently no-op any real
+      override a paper author wrote the natural way. Fixed to a blank
+      `overrides:` line, which `theme.js`'s `|| {}` fallback already handles.
+- [ ] This closes out the "engine + demo content" pass — pending the Steps 4-5
+      manual browser pass above. Deferred work (`scripts/setup.py`,
+      `scripts/build.py`, the metadata-generation GitHub Action, migrating
+      `when-rubrics-fail`/`legal-reward-bench` onto this template per
+      `docs/05-migration-plan.md`) becomes its own future `tasks/08+` sequence,
+      planned separately. (README polish, also listed as deferred here
+      originally, was drafted and committed ahead of schedule.)
