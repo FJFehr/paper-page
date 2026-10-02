@@ -9,6 +9,7 @@ Usage:
     python3 scripts/setup.py
 """
 
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -18,6 +19,11 @@ import generate_readme  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = ROOT / "_template"
+
+# Spliced into index.html's <head> between the meta:start/meta:end markers,
+# not copied as a file of its own.
+HEAD_META = Path("head-meta.html")
+META_BLOCK = re.compile(r"(<!-- meta:start[^>]*-->\n).*?(<!-- meta:end -->)", re.S)
 
 # Demo-only assets with no generic placeholder — deleted, not blanked.
 DEMO_ONLY_ASSETS = [
@@ -33,6 +39,8 @@ def copy_template_files():
     for src in TEMPLATE_DIR.rglob("*"):
         if src.is_file():
             rel = src.relative_to(TEMPLATE_DIR)
+            if rel == HEAD_META:
+                continue
             dst = ROOT / rel
             dst.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(src, dst)
@@ -51,11 +59,23 @@ def remove_demo_assets():
     return removed
 
 
+def reset_head_meta():
+    """Replace the demo paper's <head> metadata with placeholder tags."""
+    index = ROOT / "index.html"
+    html = index.read_text()
+    placeholder = (TEMPLATE_DIR / HEAD_META).read_text()
+    new_html, n = META_BLOCK.subn(lambda m: m.group(1) + placeholder + m.group(2), html)
+    if n:
+        index.write_text(new_html)
+    return bool(n)
+
+
 def main():
     print("Setting up your paper-page...\n")
 
     copied = copy_template_files()
     removed = remove_demo_assets()
+    head_reset = reset_head_meta()
     generate_readme.write_readme(ROOT)
 
     print("Done!\n")
@@ -66,6 +86,10 @@ def main():
     print("                            results.md, takeaways.yaml, taxonomy.md,")
     print("                            results-table.yaml")
     print("  OG image blanked      ->  edit assets/og-image.svg (or replace with a PNG)")
+    if head_reset:
+        print("  <head> meta blanked   ->  edit index.html's <title>/OG/citation tags")
+    else:
+        print("  <head> meta NOT reset ->  meta:start/meta:end markers missing from index.html")
     print("  README.md regenerated ->  short paper-page format, from the blanked files above")
     if removed:
         print(f"  Demo assets removed   ->  {len(removed)} file(s) deleted:")
@@ -81,8 +105,10 @@ def main():
     print("  4. Add your own figures under assets/figures/ and reference them")
     print("     from project.yaml's method section (see the commented example)")
     print("  5. Replace citation.bib with your paper's real citation")
-    print("  6. Serve locally to check your work: python3 -m http.server")
-    print("  7. Re-run `python3 scripts/generate_readme.py` any time you change the")
+    print("  6. Copy your title/description/authors into index.html's <head> tags")
+    print("     (between meta:start and meta:end) until scripts/build.py exists")
+    print("  7. Serve locally to check your work: python3 -m http.server")
+    print("  8. Re-run `python3 scripts/generate_readme.py` any time you change the")
     print("     files above, to keep README.md in sync")
 
 
