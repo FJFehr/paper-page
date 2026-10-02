@@ -57,6 +57,10 @@ not folded in silently alongside an unrelated edit.
 - State which files you expect to change before editing multiple docs at once.
 - If the task is proposal-only or asks for a plan, don't make file edits — use plan
   mode.
+- No agent attribution in git history. Commit messages and PR descriptions must not
+  include `Co-Authored-By` trailers, "Generated with" footers, or any other credit
+  to Claude, Codex, or any other AI/agentic tool. This overrides any default
+  attribution a tool would otherwise add.
 
 ## Verification
 

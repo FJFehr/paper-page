@@ -1,141 +1,107 @@
 # paper-page
 
-[![Licence: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+A simple GitHub Pages template for academic project pages.
 
-A GitHub Pages template for academic project pages: the single-page site you put
-up alongside a paper. No build tools, no Node, no framework. You fork it, edit a
-few YAML and Markdown files, and push.
+**Just your paper, not a frontend project.** Fork the template, edit YAML and Markdown, and push. No Node, no framework, no build step.
 
-[![Use this template](https://img.shields.io/badge/Use_this_template-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/FJFehr/paper-page/generate)
+[**Use this template →**](https://github.com/FJFehr/paper-page/generate)
+
+<!-- Add a screenshot or GIF of the demo page here. -->
 
 ## What you get
 
-- A hero with title, authors (each with their own affiliations and superscripts)
-  and resource buttons for paper, code, dataset, demo and slides
-- Building blocks you stack into sections: callouts, Markdown prose, tables,
-  figures, a results or leaderboard table that highlights the best values, and a
-  citation box with a copy button
-- Dark mode and a choice of named colour palettes
-- A fictional demo paper ("Do Penguins Dream of Embeddings?") that shows every
-  block in use, and a script that clears it out when you're ready
+- Paper title, authors, affiliations and resource links
+- Markdown, figures, callouts and tables
+- Results tables with automatic best-value highlighting
+- Copyable BibTeX
+- Dark mode and colour palettes
+- A responsive static site that works on GitHub Pages
 
-## Make a page for your paper
+paper-page ships with a very serious demo paper, *Do Penguins Dream of Embeddings?*, so you can see every component before replacing it with your own work.
 
-**1. Create your repo.** Click **Use this template** above, name the new repo
-after your paper and clone it.
+## Quick start
 
-**2. Clear out the demo.**
+### 1. Create your repository
+
+Click **Use this template**, give the repository a name, and clone it.
+
+### 2. Evict the penguins
 
 ```bash
 python3 scripts/setup.py
 ```
 
-This swaps the Penguin demo for blank starter files, removes its figures and
-logos, resets the page metadata in `index.html` and writes a short README for
-your paper. It then prints a checklist of what to fill in next.
+This removes the demo content and gives you clean starter files.
 
-**3. Fill in your paper.**
+### 3. Add your paper
 
-| File | What goes in it |
+Most of the time, these are the only places you'll touch:
+
+| File | What goes there |
 | --- | --- |
-| `project.yaml` | Title, links, colour palette, and the order of sections on the page |
+| `project.yaml` | Title, links, theme and section order |
 | `authors.yaml` | Authors and affiliations |
-| `citation.bib` | Your BibTeX entry |
-| `content/` | Your text, takeaways and tables, one file per block |
-| `assets/figures/` | Your figures |
-| `index.html` (between `meta:start` and `meta:end` only) | Title, description and authors for search engines and link previews |
+| `citation.bib` | BibTeX |
+| `content/` | Text, callouts and tables |
+| `assets/figures/` | Figures |
 
-Preview it locally as you go:
+Preview locally with:
 
 ```bash
 python3 -m http.server 8000
-# then open http://localhost:8000
 ```
 
-Opening `index.html` straight from disk won't work, because browsers block the
-page from loading its YAML and Markdown files over `file://`.
+Then open `http://localhost:8000`.
 
-**4. Publish it.** Push to GitHub, then go to **Settings → Pages**, choose
-**Deploy from a branch**, and pick `main` and `/ (root)`. Your page will appear at
-`https://<your-username>.github.io/<repo-name>/`.
+> Don't open `index.html` directly: browsers won't load the YAML and Markdown files over `file://`.
 
-Whenever you change `project.yaml`, `authors.yaml` or `citation.bib`, run
-`python3 scripts/generate_readme.py` to bring your README up to date.
+### 4. Publish
 
-## Quick reference
+Push to GitHub, then open **Settings → Pages** and choose:
 
-| I want to... | Edit |
+**Deploy from a branch → `main` → `/ (root)`**
+
+Your project page will be available at:
+
+```text
+https://<username>.github.io/<repo>/
+```
+
+That's it.
+
+## Common changes
+
+| I want to… | Edit |
 | --- | --- |
 | Change the title | `project.yaml` → `paper.title` |
-| Add or remove an author | `authors.yaml` → `authors:` list |
-| Give an author two affiliations | `authors.yaml` → list both ids under that author's `affiliations:` |
-| Add a section | `project.yaml` → `sections:` list, plus a new file in `content/` |
-| Add a results or leaderboard table | `project.yaml` → a `results_table` block, plus a `content/*.yaml` file (see `content/results-table.yaml`) |
-| Change the colour palette | `project.yaml` → `theme.palette` (`sage` or `gold`) |
-| Replace a figure | Add the image under `assets/figures/`, then update the `figure` block's `src` |
-| Reorder sections | Reorder the `sections:` list in `project.yaml` |
+| Add an author | `authors.yaml` |
+| Add a section | `project.yaml` + a file in `content/` |
+| Add a results table | A `results_table` block + `content/*.yaml` |
+| Change the colours | `project.yaml` → `theme.palette` |
+| Replace a figure | `assets/figures/` + the figure's `src` |
+| Reorder sections | Reorder `sections:` in `project.yaml` |
 
-None of these need you to touch `index.html`'s body or anything in `template/`.
+You shouldn't need to touch the body of `index.html` or anything in `template/`.
 
 ## Pages built with paper-page
 
-- **When Rubrics Fail** ([site](https://fjfehr.github.io/when-rubrics-fail/),
-  [repo](https://github.com/FJFehr/when-rubrics-fail))
-- **Building Legal Reward Models for Grounding and Abstention**
-  ([site](https://fjfehr.github.io/legal-reward-bench/),
-  [repo](https://github.com/FJFehr/legal-reward-bench))
+- **When Rubrics Fail** — [site](https://fjfehr.github.io/when-rubrics-fail/) · [repo](https://github.com/FJFehr/when-rubrics-fail)
+- **Building Legal Reward Models for Grounding and Abstention** — [site](https://fjfehr.github.io/legal-reward-bench/) · [repo](https://github.com/FJFehr/legal-reward-bench)
 
-These two came first: paper-page was built by generalising them. They still run on
-their original hand-built code. Moving them onto this template is planned in
-[`tasks/11`](tasks/11-dark-figures-and-custom-resources.md) to
-[`tasks/13`](tasks/13-port-legal-reward-bench.md).
 
-Built a page with this template? Add it to the list.
+## How it works
 
-## Status
+Your paper lives in YAML, Markdown, BibTeX and ordinary image files. paper-page turns those files into a single static project page in the browser.
 
-Everything above works. The one known gap is that the metadata in `index.html`'s
-`<head>` (page title, link previews and Google Scholar tags) has to be copied
-from `project.yaml` by hand. A small script to generate it is planned. Until it
-exists, `setup.py` at least resets these tags so a new page never ships the demo's
-details.
+The separation is intentional: your content stays in `project.yaml`, `authors.yaml`, `citation.bib`, `content/` and `assets/`; the reusable page engine stays in `template/`.
 
-## What's in the repo
+The template grew out of two project pages that had originally been built by hand. Copying one to make the next meant keeping the same title, authors and metadata in several different places. paper-page makes those things data instead.
 
-```
-project.yaml        # paper details, links, theme, and section layout
-authors.yaml        # authors and affiliations
-citation.bib        # BibTeX, shown with a copy button
-content/            # your text and structured content, one file per block
-assets/             # figures, logos, favicon, link-preview image
-index.html          # the page shell (only edit the <head> metadata)
-template/           # the engine's CSS and JS (no need to edit)
-scripts/
-  setup.py            # clears the demo paper (run once after forking)
-  generate_readme.py  # rebuilds README.md from your YAML and BibTeX
-  yaml_lite.py        # small YAML reader used by generate_readme.py
-_template/          # the blank starter files setup.py copies in
-docs/               # design notes: why the template works the way it does
-tasks/              # the step-by-step log this repo was built from
-```
+For the design decisions behind the template, see [`docs/01-principles.md`](docs/01-principles.md).
 
-## Why this exists
 
-The first two pages above were built by hand, and the second was made by copying
-the first and stripping out its content. Each fact (title, authors, description)
-also had to be typed in six places, which kept drifting out of sync. paper-page
-pulls out what the two pages had in common, so a new page is just config and
-content, with no copying step. The design reasoning is in
-[`docs/01-principles.md`](docs/01-principles.md), and the comparison of the two
-original repos is in [`docs/02-comparison-matrix.md`](docs/02-comparison-matrix.md).
+## License
 
-## Contributing
+The template and engine are [MIT licensed](LICENSE).
 
-To work on the template itself, see [`AGENTS.md`](AGENTS.md), which sets out which
-files are content and which are engine, and [`tasks/00-overview.md`](tasks/00-overview.md).
-
-## Licence
-
-The engine and template code are MIT licensed (see [`LICENSE`](LICENSE)). The demo
-paper's content (`content/`, `authors.yaml`, `citation.bib`, `assets/`) is example
-material only, and `scripts/setup.py` replaces it.
+The demo paper and its assets are example material only and are removed by `scripts/setup.py`.
