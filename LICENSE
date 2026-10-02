@@ -1,0 +1,41 @@
+MIT License
+
+Copyright (c) 2026 Fabio Fehr
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+EXAMPLE CONTENT NOTICE:
+
+The MIT License above applies to the engine (`index.html`, `template/`,
+`scripts/`) and to the blanked starter files in `_template/`. It does not
+extend to the fictional "Penguin Embeddings" demo paper shipped in
+`content/`, `authors.yaml`, `citation.bib`, and `assets/` — that content
+exists only to demonstrate the template and is replaced automatically when
+you run `python3 scripts/setup.py`.
+
+HOW TO USE THIS TEMPLATE:
+
+1. Use the "Use this template" button on GitHub to create your own repo.
+2. Run `python3 scripts/setup.py` to replace the demo paper with blank
+   starter files.
+3. Edit `project.yaml`, `authors.yaml`, `citation.bib`, and `content/` with
+   your own paper's content.
+4. Keep this LICENSE file — the engine code stays MIT either way.

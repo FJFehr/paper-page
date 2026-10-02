@@ -1,0 +1,5 @@
+# A bare root-level list of takeaway cards. Any number of items is supported
+# (not fixed at 3 or 4) — add or remove entries freely.
+- title: "Your first key finding."
+  body: "One or two sentences expanding on the finding."
+  anchor: "#results"          # optional; card becomes a jump-link if present, omit/null for a plain card

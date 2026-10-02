@@ -8,10 +8,12 @@ content replaced with a real paper's content, and deployed as that paper's GitHu
 site. Every decision here should be judged by: *does this stay generic enough for a
 stranger's paper, or does it quietly assume it's still `when-rubrics-fail`?*
 
-This repo is currently in its **documentation phase**: the files under `docs/` define
-the principles, vocabulary, and architecture the template will implement. No `content/`,
-`template/`, or `scripts/` directories exist yet. Until they do, treat the plans in
-`docs/` as the spec to implement against, not as history to preserve.
+The engine (`index.html`, `template/css/`, `template/js/`), a fictional demo paper
+(`project.yaml`, `authors.yaml`, `citation.bib`, `content/`, `assets/`), and the
+fork-reset mechanism (`scripts/setup.py`, `_template/`) all exist and work — see
+`tasks/00-overview.md` for what's done. The files under `docs/` still define the
+principles, vocabulary, and architecture this template implements; treat them as the
+spec to check new work against, not as history to preserve.
 
 ## Instruction precedence
 
@@ -20,25 +22,25 @@ the principles, vocabulary, and architecture the template will implement. No `co
 3. `docs/01-principles.md` (the constitutional rules — "content describes, engine
    renders," "one obvious source of truth," etc.).
 4. The rest of `docs/`.
-5. `README.md`, once it exists.
+5. `README.md`.
 
 ## Editable-by-default vs. touch-with-care
 
-Once the template's directory structure exists (see `docs/04-architecture.md`), the
-same boundary that the template imposes on a *paper author* also governs how an agent
+The same boundary the template imposes on a *paper author* also governs how an agent
 should edit *this* repo:
 
 - **Safe to edit freely**: anything under `docs/`, `content/` (example/placeholder
-  content), `AGENTS.md`, `README.md`.
+  content), `AGENTS.md`, `README.md`, `LICENSE`.
 - **Touch only when the task is explicitly about template behavior**: `template/`
-  (or `engine/`) and `scripts/` — the HTML/CSS/JS/Python that every forked paper page
-  inherits. A change here affects every future fork, so it needs a real reason, not a
-  drive-by tidy-up.
+  (the HTML/CSS/JS every forked paper page inherits), `scripts/` (`setup.py`,
+  `generate_readme.py`, `yaml_lite.py`), and `_template/` (the blanked mirror
+  `setup.py` copies from — it must stay in lockstep with `content/`'s schema, so a
+  `content/` field-name change needs a matching `_template/` edit). A change here
+  affects every future fork, so it needs a real reason, not a drive-by tidy-up.
 
-Until those directories exist, the equivalent rule is: changes to `docs/*.md` that
-alter the *agreed* architecture (the three-layer model, the component vocabulary, the
-config schema sketch) should be flagged as a design change, not folded in silently
-alongside an unrelated edit.
+Changes to `docs/*.md` that alter the *agreed* architecture (the three-layer model,
+the component vocabulary, the config schema) should be flagged as a design change,
+not folded in silently alongside an unrelated edit.
 
 ## Working rules
 
@@ -58,13 +60,14 @@ alongside an unrelated edit.
 
 ## Verification
 
-There's no build or test suite while this is documentation-only. The check is a
-read-through: for each of the scenarios in `docs/01-principles.md` §10 ("change the
-title," "add an author," "add a results section," ...), confirm the architecture in
-`docs/04-architecture.md` gives that scenario exactly one place to make the change.
+There's no build step, but there are two real checks:
+- **Engine/content changes**: serve the repo (`python3 -m http.server`) and confirm
+  it renders with zero console errors, per `tasks/07-verification.md`'s procedure.
+- **`scripts/setup.py` / `_template/` changes**: run the script against a scratch
+  copy of the repo (never the working tree — it's destructive), confirm every live
+  file matches its `_template/` counterpart, then serve that scratch copy and check
+  it still renders cleanly.
 
-## Follow-up
-
-This file is principles-level and will need a second pass once `template/`, `content/`,
-and `scripts/` actually exist with real file names — replace the generic descriptions
-above with concrete paths at that point.
+For any change, the read-through check still applies: for each scenario in
+`docs/01-principles.md` §10 ("change the title," "add an author," "add a results
+section," ...), confirm it resolves in exactly one place.

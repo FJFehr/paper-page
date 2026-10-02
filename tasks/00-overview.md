@@ -11,13 +11,15 @@ re-reading this whole research pass — but do read [`docs/`](../docs/) first if
 and a complete fictional demo paper's content (`project.yaml`, `authors.yaml`,
 `citation.bib`, `content/`, `assets/`) that exercises every block type.
 
-**Out of scope, deferred to a future `tasks/08+`**: `scripts/setup.py` (the fork-reset
-script), `scripts/build.py` (the static-metadata generator), the GitHub Action that
-would run it, `_template/` (the blanked mirror `setup.py` copies from), and the final
-polished README. Until those exist, `project.yaml`'s metadata is only reflected in
-`index.html`'s `<head>` by hand — this is a known, accepted gap for this pass (see
-[`docs/01-principles.md`](../docs/01-principles.md) §2 and §9's "no framework, but a
-tiny generation step is fine" distinction; the generation step just isn't built yet).
+**Covered by `tasks/08-09`**: `scripts/setup.py` (the fork-reset script), `_template/`
+(the blanked mirror `setup.py` copies from), and the final polished README.
+
+**Still out of scope, deferred beyond `tasks/09`**: `scripts/build.py` (the
+static-metadata generator) and the GitHub Action that would run it. Until those
+exist, `project.yaml`'s metadata is only reflected in `index.html`'s `<head>` by
+hand — this is a known, accepted gap (see [`docs/01-principles.md`](../docs/01-principles.md)
+§2 and §9's "no framework, but a tiny generation step is fine" distinction; the
+generation step just isn't built yet).
 
 ## Sequence
 
@@ -43,6 +45,16 @@ before starting the next step; don't batch multiple steps into one sitting.
    Steps 2–5 but can't be *verified* until Step 5 is done (nothing renders it before then).
 7. **[07-verification.md](07-verification.md)** — serve it, click through it, fix what's
    broken. Depends on everything above.
+8. **[08-fork-setup-script.md](08-fork-setup-script.md)** — `scripts/setup.py` +
+   `_template/` blanked mirror, porting the working pattern from
+   `fjfehr.github.io`. Depends on Step 7 (there must be a real demo to blank).
+9. **[09-readme-and-license.md](09-readme-and-license.md)** — the polished README
+   documenting the fork→setup→edit→push workflow, plus `LICENSE`. Depends on Step 8
+   (documents a real command, not an aspirational one).
+10. **[10-readme-generator.md](10-readme-generator.md)** — `scripts/generate_readme.py`
+    (+ `scripts/yaml_lite.py`), wired into `scripts/setup.py`, so a fork's own
+    `README.md` becomes the short `when-rubrics-fail`-style format instead of staying
+    this template's long explanatory one. Depends on Step 9.
 
 ## Why this order
 

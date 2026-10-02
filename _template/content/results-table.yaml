@@ -1,0 +1,14 @@
+caption: "Describe what this table compares."
+columns:
+  - id: model
+    label: Model
+    type: text
+  - id: metric_a
+    label: Metric A
+    type: number
+    better: higher       # "higher" | "lower" — which extreme gets the best-value highlight
+rows:
+  - model: "Baseline"
+    metric_a: 0.50
+  - model: "Your Model"
+    metric_a: 0.75

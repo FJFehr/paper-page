@@ -1,0 +1,22 @@
+# NOTE: template/js/yaml-lite.js does not support flow-style lists
+# ("[a, b]") -- every list (including a single-item affiliations list)
+# must use block style ("- a" on its own indented line).
+affiliations:
+  - id: your-org
+    name: Your Institution
+    # logo: assets/logos/your-org.svg   # optional; omit for no logo image
+
+authors:
+  - name: Your Name
+    url: null                     # optional personal/homepage URL
+    affiliations:
+      - your-org
+    equal_contribution: false
+    corresponding: true
+
+# Author entries can reference more than one affiliation id — that renders
+# multiple superscripts on one author. Add more authors/affiliations as needed.
+
+correspondence:
+  name: Your Name
+  email: you@example.org

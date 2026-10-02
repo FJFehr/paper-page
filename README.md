@@ -1,17 +1,97 @@
 # paper-page
 
-A template for building academic project pages — the single-page sites researchers
-put up alongside a paper, with a title, authors, abstract, figures, results, and a
-citation block. `paper-page` separates that layout/rendering engine from the actual
-paper content, so making your own project page is a matter of editing a few config
-and content files, not writing HTML/CSS/JS.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **Status: work in progress.** This repo is being actively built and is **not yet
-> ready to use**. The engine (`index.html`, `template/css/`, `template/js/`) and a
-> fictional demo paper (`project.yaml`, `content/`, `assets/`) exist and render, but
-> the fork-and-go workflow (a reset script, a blanked starter mirror, a generated
-> `<head>`) described in [`docs/`](docs/) isn't built yet. See
-> [`tasks/00-overview.md`](tasks/00-overview.md) for what's done and what's left.
+> A GitHub Pages template for academic project pages — the single-page sites
+> researchers put up alongside a paper. No build tools, no Node, no config hell.
+> Fork it, edit YAML/Markdown, push.
+
+> **Status: work in progress.** The engine, the demo paper, and the fork-reset
+> workflow below all exist and work. Still missing: a script that generates
+> `<head>` metadata (OpenGraph/Twitter/Scholar tags) from `project.yaml` — until
+> that lands, those tags are hand-synced in `index.html`. See
+> [`tasks/00-overview.md`](tasks/00-overview.md) for the full status.
+
+**What you get out of the box:**
+- Hero, authors (with per-author affiliations and superscripts), and resource
+  buttons (paper/code/dataset/demo/slides) — all driven from two YAML files
+- A composable section/block system: callouts, Markdown prose, tables, figures,
+  a results/leaderboard table with best-value highlighting, and a citation block
+  with copy-to-clipboard BibTeX
+- Dark mode + a swappable named colour palette
+- One field entered once drives the visible page *and* the page `<title>`,
+  OpenGraph, Twitter card, and Scholar citation meta tags — no six-place sync
+
+## Use This Template
+
+[![Use this template](https://img.shields.io/badge/Use_this_template-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/FJFehr/paper-page/generate)
+
+Then run the setup script to blank the demo paper:
+
+```bash
+python3 scripts/setup.py
+```
+
+This replaces the fictional "Penguin Embeddings" demo with blank starter files,
+removes the demo's figures/logos, and regenerates this README as a short,
+paper-specific one (title, authors, links, citation — the format
+[`when-rubrics-fail`](https://github.com/FJFehr/when-rubrics-fail) and
+[`legal-reward-bench`](https://github.com/FJFehr/legal-reward-bench) use). Then
+fill in:
+- `project.yaml` — title, resource links, theme palette
+- `authors.yaml` — your name, affiliation(s)
+- `citation.bib` — your paper's real citation
+- `content/*.md` / `content/*.yaml` — your prose, takeaways, results table
+- Add your own figures under `assets/figures/`
+
+Re-run `python3 scripts/generate_readme.py` any time afterward to keep
+README.md in sync with those files.
+
+## Quick Start
+
+| I want to... | Edit |
+| --- | --- |
+| Change the title | `project.yaml` → `paper.title` |
+| Add or remove an author | `authors.yaml` → `authors:` list |
+| Give an author two affiliations | `authors.yaml` → list both ids under that author's `affiliations:` |
+| Add a new section | `project.yaml` → `sections:` list + a new `content/` file |
+| Add a results/leaderboard table | `project.yaml` → a `results_table` block + `content/*.yaml` (see `content/results-table.yaml`) |
+| Change the colour palette | `project.yaml` → `theme.palette` (`sage` or `gold`) |
+| Replace a figure | Add the asset under `assets/figures/`, update the `figure` block's `src` |
+| Reorder sections | Reorder `project.yaml`'s `sections:` list |
+| Sync README.md after editing the above | `python3 scripts/generate_readme.py` |
+
+Every one of these is a config/content edit — never an `index.html`/`template/`
+change. See [`docs/01-principles.md`](docs/01-principles.md) §10 for the full
+rationale.
+
+## Structure
+
+```
+project.yaml          # paper metadata, resources, theme, section/block layout
+authors.yaml           # authors + affiliations
+citation.bib           # BibTeX, rendered with a copy button
+content/               # your prose and structured content, one file per block
+  tldr.md
+  overview.md
+  method.md
+  results.md
+  takeaways.yaml
+  taxonomy.md
+  results-table.yaml
+assets/                 # figures, logos, favicon, OG image
+index.html              # the engine shell — don't edit for a normal paper page
+template/               # engine CSS/JS — don't edit for a normal paper page
+  css/
+  js/
+scripts/
+  setup.py              # blanks the demo paper from _template/, regenerates README.md
+  generate_readme.py    # (re)builds README.md from project.yaml/authors.yaml/citation.bib
+  yaml_lite.py          # Python port of template/js/yaml-lite.js, used by generate_readme.py
+_template/               # blanked mirror scripts/setup.py copies from
+docs/                    # design rationale — read if you're curious why
+tasks/                   # the ordered build log this repo was implemented against
+```
 
 ## Why this exists
 
@@ -30,48 +110,31 @@ title/author/description across six different places (the visible page, `<title>
 OpenGraph tags, Twitter card tags, Scholar citation meta tags, `citation.bib`), which
 drifts out of sync easily.
 
-`paper-page` is meant to fix that by generalizing what those two repos have in
-common into a proper template: a generic rendering engine that any paper can drive
-by editing config and content files, with no copy-paste porting step and one source
-of truth per fact. Once it's ready, the workflow is meant to be:
-
-**Fork → edit `project.yaml`, `authors.yaml`, `content/` → push → your paper has a
-GitHub Pages site.**
-
-See [`docs/01-principles.md`](docs/01-principles.md) for the full rationale, and
+`paper-page` generalizes what those two repos have in common into a proper template:
+a generic rendering engine any paper can drive by editing config/content files, with
+no copy-paste porting step and one source of truth per fact. See
+[`docs/01-principles.md`](docs/01-principles.md) for the full rationale, and
 [`docs/02-comparison-matrix.md`](docs/02-comparison-matrix.md) for the concrete
-comparison between the two source repos that the design is grounded in.
+comparison between the two source repos the design is grounded in.
 
-## What's in this repo right now
-
-- **`index.html` + `template/css/` + `template/js/`** — the rendering engine. Reads
-  YAML config and Markdown/YAML content, renders the page client-side, no build step.
-- **`project.yaml`, `authors.yaml`, `citation.bib`, `content/`, `assets/`** — a
-  fictional demo paper ("Penguin Embeddings") used to exercise every block type the
-  engine supports (callouts, tables, figures, results tables, citations, etc.).
-- **`docs/`** — the design docs: principles, a comparison of `when-rubrics-fail` vs.
-  `legal-reward-bench`, the component vocabulary, the architecture, and the migration
-  plan. Read these first if you want to understand a design decision.
-- **`tasks/`** — the ordered build plan this repo is being implemented against, one
-  file per step.
-
-Not yet built: the fork-reset script, the blanked starter mirror, the static
-metadata generator (so `<head>` tags are generated from `project.yaml` instead of
-hand-synced), and a user-facing "how to fork this" guide.
-
-## Using it today
-
-You can't fork this yet and expect a working page out of the box — that workflow is
-still being built. If you want to see the engine in action, serve the repo root with
-any static file server and open it in a browser; it renders the demo paper's content.
+## View Locally
 
 ```bash
 python3 -m http.server 8000
 # then open http://localhost:8000
 ```
 
+Opening `index.html` directly via `file://` won't work — the engine `fetch()`s
+`project.yaml`/`authors.yaml`/`content/*`, which browsers block from `file://`.
+
 ## Contributing / picking this up
 
 Read [`AGENTS.md`](AGENTS.md) for the editing boundaries (docs/content vs.
-engine/scripts) and [`tasks/00-overview.md`](tasks/00-overview.md) for the current
-step in the build sequence.
+engine/scripts) and [`tasks/00-overview.md`](tasks/00-overview.md) for the build
+log this repo was implemented against.
+
+## License
+
+MIT for the engine and template — see [`LICENSE`](LICENSE). The demo paper's
+content (`content/`, `authors.yaml`, `citation.bib`, `assets/`) is example content
+only; `scripts/setup.py` replaces it, don't reuse it as-is.

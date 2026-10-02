@@ -1,0 +1,82 @@
+paper:
+  title: "Your Paper Title"
+  short_title: "Short Title"          # nav wordmark; keep brief
+  description: "One or two sentences describing the paper — used for the meta description, OpenGraph, and Twitter card."
+  year: 2026
+  venue: null                          # e.g. "NeurIPS 2026" — null renders no venue badge
+  doi: null
+  arxiv: null                          # e.g. "2601.12345" — null disables the arXiv button
+
+# One entry drives the hero, <title>, OpenGraph/Twitter/Scholar meta, and
+# citation UI. See docs/01-principles.md #2.
+resources:
+  paper: null                          # link to the PDF / venue page
+  code: null                           # e.g. https://github.com/you/your-repo
+  dataset: null
+  demo: null
+  slides: null
+  # Any key not in the built-in icon map still renders as a labeled button with
+  # a generic link icon — unknown keys are never dropped. A null value renders
+  # a disabled/inert button, not a missing one — see docs/01-principles.md #5.
+
+social:
+  image: assets/og-image.svg           # OG/Twitter card image
+  favicon: assets/favicon.svg
+  canonical_url: null                  # set once you know your GitHub Pages URL
+
+theme:
+  palette: sage                        # "sage" | "gold" — see template/js/palettes.js
+  mode: auto                           # "auto" | "light" | "dark" (initial only; visitor can still toggle)
+  overrides: {}                        # optional: CSS custom-property name -> value
+
+footer:
+  note: null                           # optional plain string, renders as-is (no Markdown)
+
+# sections[].blocks[] is render order within that section — reorder, add, or
+# remove either freely, no engine edit needed. The structure below keeps one
+# section per demo section so every block type stays demonstrated; see
+# docs/03-component-vocabulary.md for the full list.
+sections:
+  - id: overview
+    title: Overview
+    nav: true
+    blocks:
+      - type: callout
+        style: tldr
+        source: content/tldr.md
+      - type: markdown
+        source: content/overview.md
+      - type: takeaways
+        source: content/takeaways.yaml
+
+  - id: method
+    title: Method
+    nav: true
+    blocks:
+      - type: markdown
+        source: content/method.md
+      - type: table
+        source: content/taxonomy.md
+      # A figure block needs a real image — add your own under assets/figures/
+      # and uncomment:
+      # - type: figure
+      #   src: assets/figures/your-figure.svg
+      #   alt: "Describe the figure for screen readers."
+      #   caption: "Figure 1. ..."
+      #   position: right        # left | right | center
+
+  - id: results
+    title: Results
+    nav: true
+    blocks:
+      - type: results_table
+        source: content/results-table.yaml
+      - type: markdown
+        source: content/results.md
+
+  - id: cite
+    title: Cite
+    nav: true
+    blocks:
+      - type: citation
+        source: citation.bib
