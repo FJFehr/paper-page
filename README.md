@@ -4,7 +4,7 @@ A simple GitHub Pages template for academic project pages.
 
 **Just your paper, not a frontend project.** Fork the template, edit YAML and Markdown, and push. No Node, no framework, no build step.
 
-[**Use this template →**](https://github.com/FJFehr/paper-page/generate)
+[![Use this template](https://img.shields.io/badge/Use_this_template-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/FJFehr/paper-page/generate)
 
 <!-- Add a screenshot or GIF of the demo page here. -->
 
