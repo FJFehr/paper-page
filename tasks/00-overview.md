@@ -55,6 +55,14 @@ before starting the next step; don't batch multiple steps into one sitting.
     (+ `scripts/yaml_lite.py`), wired into `scripts/setup.py`, so a fork's own
     `README.md` becomes the short `when-rubrics-fail`-style format instead of staying
     this template's long explanatory one. Depends on Step 9.
+11. **[11-dark-figures-and-custom-resources.md](11-dark-figures-and-custom-resources.md)**
+    — `figure.src_dark` and map-style `resources:` entries (custom label, icon,
+    tooltip): the two features the live repos use that the engine lacks.
+12. **[12-port-when-rubrics-fail.md](12-port-when-rubrics-fail.md)** — rebuild
+    `when-rubrics-fail` on this engine. Depends on Step 11.
+13. **[13-port-legal-reward-bench.md](13-port-legal-reward-bench.md)** — rebuild
+    `legal-reward-bench` on this engine, with per-author affiliations and a
+    `results_table`. Depends on Steps 11–12.
 
 ## Why this order
 
