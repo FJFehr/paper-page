@@ -21,26 +21,43 @@ paper-page ships with a very serious demo paper, *Do Penguins Dream of Embedding
 
 ## Quick start
 
-### 1. Create your repository
+### 1. Create your repository from the template
 
-On GitHub, click **Use this template** → **Create a new repository** and give it a name. Then clone your new repository to your computer:
+On GitHub, click **Use this template** → **Create a new repository**. Pick an owner and a name (for example `my-paper`), then click **Create repository**.
+
+You now have your own copy of paper-page on GitHub, still showing the demo paper.
+
+### 2. Clone it to your computer
 
 ```bash
 git clone https://github.com/<username>/<repo>.git
 cd <repo>
 ```
 
-### 2. Clear out the demo paper
+### 3. Clean up the demo paper
 
-Your new repository starts as a copy of the demo paper. In the cloned folder on your computer, run the setup script once:
+Inside the cloned folder, run the setup script. You only need to do this once:
 
 ```bash
 python3 scripts/setup.py
 ```
 
-This swaps the demo content for blank starter files and replaces this README with a short one for your paper. Commit the result before you start editing.
+This:
 
-### 3. Add your paper
+- replaces the demo's config and content with blank starter files
+- deletes the demo's figures and logos
+- resets the page metadata in `index.html`
+- replaces this README with a short one for your paper
+
+It then prints a checklist of what to fill in. Commit and push the clean slate:
+
+```bash
+git add -A
+git commit -m "Clear out demo paper"
+git push
+```
+
+### 4. Add your paper
 
 Most of the time, these are the only places you'll touch:
 
@@ -51,8 +68,9 @@ Most of the time, these are the only places you'll touch:
 | `citation.bib` | BibTeX |
 | `content/` | Text, callouts and tables |
 | `assets/figures/` | Figures |
+| `index.html` (between `meta:start` and `meta:end` only) | Title, description and authors for search engines and link previews |
 
-Preview locally with:
+Preview locally as you go:
 
 ```bash
 python3 -m http.server 8000
@@ -62,19 +80,29 @@ Then open `http://localhost:8000`.
 
 > Don't open `index.html` directly: browsers won't load the YAML and Markdown files over `file://`.
 
-### 4. Publish
+When you change `project.yaml`, `authors.yaml` or `citation.bib`, run `python3 scripts/generate_readme.py` to update your README.
 
-Push to GitHub, then open **Settings → Pages** and choose:
+### 5. Publish
+
+Commit and push your changes:
+
+```bash
+git add -A
+git commit -m "Add paper content"
+git push
+```
+
+Then, on GitHub, open **Settings → Pages** and choose:
 
 **Deploy from a branch → `main` → `/ (root)`**
 
-Your project page will be available at:
+After a minute or two your project page will be live at:
 
 ```text
 https://<username>.github.io/<repo>/
 ```
 
-That's it.
+That's it. From now on, every push updates the page.
 
 ## Common changes
 
@@ -92,8 +120,8 @@ You shouldn't need to touch the body of `index.html` or anything in `template/`.
 
 ## Pages built with paper-page
 
-- **When Rubrics Fail** — [site](https://fjfehr.github.io/when-rubrics-fail/) · [repo](https://github.com/FJFehr/when-rubrics-fail)
-- **Building Legal Reward Models for Grounding and Abstention** — [site](https://fjfehr.github.io/legal-reward-bench/) · [repo](https://github.com/FJFehr/legal-reward-bench)
+- **When Rubrics Fail**: [site](https://fjfehr.github.io/when-rubrics-fail/) · [repo](https://github.com/FJFehr/when-rubrics-fail)
+- **Building Legal Reward Models for Grounding and Abstention**: [site](https://fjfehr.github.io/legal-reward-bench/) · [repo](https://github.com/FJFehr/legal-reward-bench)
 
 
 ## How it works
