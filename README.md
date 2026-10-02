@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="assets/favicon.svg" alt="paper-page logo" width="96">
+</p>
+
+<p align="center"><em>Everyone wants to have a pretty PP.</em></p>
+
 # paper-page
 
 A simple GitHub Pages template for academic project pages.
@@ -39,7 +45,7 @@ cd <repo>
 Inside the cloned folder, run the setup script. You only need to do this once:
 
 ```bash
-python3 scripts/setup.py
+python scripts/setup.py
 ```
 
 This:
