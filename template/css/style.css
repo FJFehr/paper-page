@@ -6,7 +6,7 @@
    those properties at runtime from project.yaml's theme: block (see
    tasks/03-engine-js-foundation.md) -- the literal values in :root and
    [data-theme="dark"] below are only the no-JS fallback (same convention as
-   when-rubrics-fail/legal-reward-bench). They default to the "sage" named
+   when-rubrics-fail/legal-reward-bench). They default to the "teal" named
    palette (template/js/palettes.js) so a JS-disabled visitor still sees a
    coherent, on-brand page rather than unstyled HTML.
    ============================================================================ */
@@ -25,11 +25,11 @@ body { margin: 0; }
   --color-text-muted: #6E6759;
   --color-border: #DED4C0;
   --color-rule: #C9BC9E;
-  --color-link: #256025;
-  --color-link-hover: #16350F;
-  --color-focus: #256025;
+  --color-link: #23695F;
+  --color-link-hover: #123F39;
+  --color-focus: #23695F;
 
-  --green-dark: #328132;   --green-mid: #61CA53;   --green-light: #DCF5DC;   --green-text: #256025;
+  --green-dark: #2F8F82;   --green-mid: #5CC2B3;   --green-light: #DAF1EC;   --green-text: #23695F;
   --purple-dark: #75639B;  --purple-mid: #B7A9D6;  --purple-light: #EEEAF5;  --purple-text: #5F5085;
   --orange-dark: #D98A45;  --orange-mid: #F1C38F;  --orange-light: #FBF1E6;  --orange-text: #8C4E1C;
 
@@ -53,11 +53,11 @@ body { margin: 0; }
   --color-text-muted: #A79C8A;
   --color-border: #3A332B;
   --color-rule: #453D33;
-  --color-link: #6E9C64;
-  --color-link-hover: #86B77B;
-  --color-focus: #6E9C64;
+  --color-link: #6FAFA5;
+  --color-link-hover: #8ED3C8;
+  --color-focus: #6FAFA5;
 
-  --green-dark: #61CA53;   --green-mid: #61CA53;   --green-light: #26301F;   --green-text: #6E9C64;
+  --green-dark: #5CC2B3;   --green-mid: #5CC2B3;   --green-light: #1C2D2A;   --green-text: #6FAFA5;
   --purple-dark: #B7A9D6;  --purple-mid: #B7A9D6;  --purple-light: #2A2733;  --purple-text: #C6BADF;
   --orange-dark: #D98A45;  --orange-mid: #F1C38F;  --orange-light: #332822;  --orange-text: #E2A468;
 }

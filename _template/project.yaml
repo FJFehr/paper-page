@@ -25,7 +25,7 @@ social:
   canonical_url: null                  # set once you know your GitHub Pages URL
 
 theme:
-  palette: sage                        # "sage" | "gold" (see template/js/palettes.js)
+  palette: teal                        # "teal" | "sage" | "gold" (see template/js/palettes.js)
   mode: auto                           # "auto" | "light" | "dark" (initial only; visitor can still toggle)
   # Optional CSS custom-property overrides, one per indented line, e.g.
   #   --font-serif: "Georgia", serif

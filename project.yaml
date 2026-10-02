@@ -24,7 +24,7 @@ social:
   canonical_url: null
 
 theme:
-  palette: sage
+  palette: teal
   mode: auto
   # Leave blank for "no overrides" -- template/js/yaml-lite.js does not
   # support flow-style maps ("{}"/"{a: b}"), same limitation as

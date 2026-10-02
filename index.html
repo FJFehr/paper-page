@@ -60,7 +60,7 @@
       var stored = localStorage.getItem("theme");
       var mode = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
       document.documentElement.setAttribute("data-theme", mode);
-      if (typeof applyTheme === "function") applyTheme({ palette: "sage", overrides: {} }, mode);
+      if (typeof applyTheme === "function") applyTheme({ palette: "teal", overrides: {} }, mode);
     } catch (e) {
       /* localStorage/matchMedia unavailable -- default light stylesheet applies. */
     }

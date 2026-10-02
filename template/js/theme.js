@@ -5,7 +5,7 @@
  * Adapts when-rubrics-fail/legal-reward-bench's applyTheme(mode) (which read
  * a single hardcoded global THEME const) into a parameterized
  * applyTheme(themeConfig, mode), driven by project.yaml's theme: block
- * instead: { palette: "sage"|"gold", mode: "auto"|"light"|"dark",
+ * instead: { palette: "teal"|"sage"|"gold", mode: "auto"|"light"|"dark",
  * overrides: {} }. See tasks/03-engine-js-foundation.md.
  *
  * Called twice, same as the source repos: once from index.html's pre-paint
@@ -23,7 +23,7 @@
 
 function applyTheme(themeConfig, mode) {
   themeConfig = themeConfig || {};
-  const palette = PALETTES[themeConfig.palette] || PALETTES.sage;
+  const palette = PALETTES[themeConfig.palette] || PALETTES.teal;
   const c = palette[mode] || palette.light;
 
   const root = document.documentElement.style;
