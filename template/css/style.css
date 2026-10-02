@@ -122,12 +122,12 @@ a:hover, a:focus-visible { color: var(--color-link-hover); }
 /* ----------------------------------------------------------------------
    HERO
    ---------------------------------------------------------------------- */
-.hero { padding: 48px 0 40px; }
+.hero { padding: 48px 0 40px; text-align: center; }
 #hero-title {
   font-family: var(--font-serif); font-size: var(--font-size-hero-title);
-  line-height: 1.25; max-width: var(--prose-width); margin: 0 0 20px;
+  line-height: 1.25; max-width: var(--prose-width); margin: 0 auto 20px;
 }
-#author-list { list-style: none; margin: 0 0 8px; padding: 0; display: flex; flex-wrap: wrap; gap: 0 4px; }
+#author-list { list-style: none; margin: 0 0 8px; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0 4px; }
 .author { font-size: 0.98rem; }
 .author a { text-decoration: none; }
 .author a:hover { text-decoration: underline; }
@@ -135,11 +135,11 @@ a:hover, a:focus-visible { color: var(--color-link-hover); }
 .author-sep { color: var(--color-text-muted); }
 #equal-contribution-note { font-size: 0.85rem; color: var(--color-text-muted); margin: 0 0 20px; }
 
-#affiliation-logos { display: flex; align-items: center; gap: 20px; margin: 4px 0 24px; flex-wrap: wrap; }
+#affiliation-logos { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 4px 0 24px; flex-wrap: wrap; }
 #affiliation-logos img { height: 34px; width: auto; }
 [data-theme="dark"] #affiliation-logos img.affiliation-logo-invert { filter: invert(1) brightness(1.6); }
 
-#resource-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+#resource-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 20px; }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 9px 16px; border-radius: var(--radius-pill);

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-setup.py — paper-page fork setup
+setup.py: paper-page fork setup
 
 Run this script once after using the GitHub template button to replace the
 "Penguin Embeddings" demo paper with blank starter files.
@@ -25,7 +25,7 @@ TEMPLATE_DIR = ROOT / "_template"
 HEAD_META = Path("head-meta.html")
 META_BLOCK = re.compile(r"(<!-- meta:start[^>]*-->\n).*?(<!-- meta:end -->)", re.S)
 
-# Demo-only assets with no generic placeholder — deleted, not blanked.
+# Demo-only assets with no generic placeholder: deleted, not blanked.
 DEMO_ONLY_ASSETS = [
     "assets/figures/pipeline.svg",
     "assets/logos/oxu.svg",
@@ -114,6 +114,6 @@ def main():
 
 if __name__ == "__main__":
     if not TEMPLATE_DIR.exists():
-        print("Error: _template/ not found — nothing to reset from.", file=sys.stderr)
+        print("Error: _template/ not found, nothing to reset from.", file=sys.stderr)
         sys.exit(1)
     main()

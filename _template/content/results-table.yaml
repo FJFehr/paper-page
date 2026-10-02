@@ -6,7 +6,7 @@ columns:
   - id: metric_a
     label: Metric A
     type: number
-    better: higher       # "higher" | "lower" — which extreme gets the best-value highlight
+    better: higher       # "higher" | "lower": which extreme gets the best-value highlight
 rows:
   - model: "Baseline"
     metric_a: 0.50

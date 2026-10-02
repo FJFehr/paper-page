@@ -1,23 +1,23 @@
 paper:
   title: "Your Paper Title"
   short_title: "Short Title"          # nav wordmark; keep brief
-  description: "One or two sentences describing the paper — used for the meta description, OpenGraph, and Twitter card."
+  description: "One or two sentences describing the paper. Used for the meta description, OpenGraph, and Twitter card."
   year: 2026
-  venue: null                          # e.g. "NeurIPS 2026" — null renders no venue badge
+  venue: null                          # e.g. "NeurIPS 2026"; null shows no venue badge
   doi: null
-  arxiv: null                          # e.g. "2601.12345" — null disables the arXiv button
+  arxiv: null                          # e.g. "2601.12345"; null shows a greyed-out arXiv button
 
 # One entry drives the hero, <title>, OpenGraph/Twitter/Scholar meta, and
 # citation UI. See docs/01-principles.md #2.
 resources:
-  paper: null                          # link to the PDF / venue page
-  code: null                           # e.g. https://github.com/you/your-repo
-  dataset: null
-  demo: null
-  slides: null
-  # Any key not in the built-in icon map still renders as a labeled button with
-  # a generic link icon — unknown keys are never dropped. A null value renders
-  # a disabled/inert button, not a missing one — see docs/01-principles.md #5.
+  code: null                           # your GitHub repo, e.g. https://github.com/you/your-repo
+  # Add more buttons as you need them, for example:
+  #   paper: https://...                 # PDF or venue page
+  #   dataset: https://huggingface.co/datasets/...
+  #   demo: https://...
+  #   slides: https://...
+  # Any other key still gets a button, with a generic link icon. A null value
+  # shows a greyed-out button, so delete the line if you don't want one.
 
 social:
   image: assets/og-image.svg           # OG/Twitter card image
@@ -25,14 +25,16 @@ social:
   canonical_url: null                  # set once you know your GitHub Pages URL
 
 theme:
-  palette: sage                        # "sage" | "gold" — see template/js/palettes.js
+  palette: sage                        # "sage" | "gold" (see template/js/palettes.js)
   mode: auto                           # "auto" | "light" | "dark" (initial only; visitor can still toggle)
-  overrides: {}                        # optional: CSS custom-property name -> value
+  # Optional CSS custom-property overrides, one per indented line, e.g.
+  #   --font-serif: "Georgia", serif
+  overrides:
 
 footer:
   note: null                           # optional plain string, renders as-is (no Markdown)
 
-# sections[].blocks[] is render order within that section — reorder, add, or
+# sections[].blocks[] is render order within that section. Reorder, add, or
 # remove either freely, no engine edit needed. The structure below keeps one
 # section per demo section so every block type stays demonstrated; see
 # docs/03-component-vocabulary.md for the full list.
@@ -57,7 +59,7 @@ sections:
         source: content/method.md
       - type: table
         source: content/taxonomy.md
-      # A figure block needs a real image — add your own under assets/figures/
+      # A figure block needs a real image. Add your own under assets/figures/
       # and uncomment:
       # - type: figure
       #   src: assets/figures/your-figure.svg

@@ -4,4 +4,4 @@ Write your paper's overview here in Markdown. You can include **bold text**,
 ## A sub-heading
 
 Describe the problem you're solving and why it matters. This block renders as
-plain Markdown — add as many paragraphs or sub-headings as you need.
+plain Markdown. Add as many paragraphs or sub-headings as you need.

@@ -168,6 +168,7 @@
    * every resources{} key renders a button, known keys get a matching
    * icon, unknown keys fall back to a generic link icon + title-cased
    * label. A null URL renders as the existing disabled/inert state.
+   * paper.arxiv (an arXiv id) always renders first, as the arXiv logo.
    * ------------------------------------------------------------------- */
   const ICON_DOCUMENT =
     '<svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Zm8 1.5V8h4.5L14 3.5ZM8 13h8v1.5H8V13Zm0 3.5h8V18H8v-1.5ZM8 9.5h4V11H8V9.5Z"/></svg>';
@@ -178,12 +179,14 @@
     '<svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5.5" rx="8" ry="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="none" stroke="currentColor" stroke-width="1.6" d="M4 5.5v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6M4 11.5v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>';
   const ICON_PLAY =
     '<svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="currentColor" d="M10 8.5l6 3.5-6 3.5v-7Z"/></svg>';
+  const ICON_ARXIV =
+    '<img class="btn-icon btn-icon-arxiv" src="template/icons/arxiv.svg" alt="">';
   const ICON_LINK =
     '<svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.7" d="M9.5 14.5 14.5 9.5M8 12l-2.3 2.3a3 3 0 0 0 4.24 4.24L12.2 16.3M16 12l2.3-2.3a3 3 0 0 0-4.24-4.24L11.8 7.7"/></svg>';
 
   const RESOURCE_MAP = {
     paper: { icon: ICON_DOCUMENT, label: "Paper" },
-    arxiv: { icon: ICON_DOCUMENT, label: "arXiv" },
+    arxiv: { icon: ICON_ARXIV, label: "arXiv", iconOnly: true },
     code: { icon: ICON_GITHUB, label: "Code" },
     dataset: { icon: ICON_DATASET, label: "Dataset" },
     demo: { icon: ICON_PLAY, label: "Demo" },
@@ -194,13 +197,13 @@
     return key.charAt(0).toUpperCase() + key.slice(1).replace(/[_-]/g, " ");
   }
 
-  function renderResourceButtons(resources, citeSectionId) {
+  function renderResourceButtons(paper, resources, citeSectionId) {
     const container = document.getElementById("resource-buttons");
-    if (!container || !resources) return;
+    if (!container) return;
     container.innerHTML = "";
 
-    function makeButton(label, url, icon) {
-      const textClass = "visually-hidden";
+    function makeButton(label, url, icon, iconOnly) {
+      const textClass = iconOnly ? "visually-hidden" : "";
       if (url) {
         const a = document.createElement("a");
         a.href = url;
@@ -217,11 +220,16 @@
       return span;
     }
 
+    if ("arxiv" in paper && !("arxiv" in resources)) {
+      const arxivUrl = paper.arxiv ? "https://arxiv.org/abs/" + paper.arxiv : null;
+      container.appendChild(makeButton("arXiv", arxivUrl, ICON_ARXIV, true));
+    }
+
     Object.keys(resources).forEach(function (key) {
       const known = RESOURCE_MAP[key];
       const label = known ? known.label : titleCase(key);
       const icon = known ? known.icon : ICON_LINK;
-      container.appendChild(makeButton(label, resources[key], icon));
+      container.appendChild(makeButton(label, resources[key], icon, known && known.iconOnly));
     });
 
     if (citeSectionId) {
@@ -262,7 +270,7 @@
       const citeSection = (project.sections || []).find(function (s) {
         return (s.blocks || []).some(function (b) { return b.type === "citation"; });
       });
-      renderResourceButtons(project.resources || {}, citeSection ? citeSection.id : null);
+      renderResourceButtons(project.paper || {}, project.resources || {}, citeSection ? citeSection.id : null);
 
       // Re-apply the *configured* palette now that project.yaml has loaded
       // (see index.html's THEME BOOTSTRAP comment for the accepted

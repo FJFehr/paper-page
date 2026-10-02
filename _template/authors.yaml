@@ -14,7 +14,7 @@ authors:
     equal_contribution: false
     corresponding: true
 
-# Author entries can reference more than one affiliation id — that renders
+# Author entries can reference more than one affiliation id; that renders
 # multiple superscripts on one author. Add more authors/affiliations as needed.
 
 correspondence:
