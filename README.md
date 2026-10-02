@@ -23,15 +23,22 @@ paper-page ships with a very serious demo paper, *Do Penguins Dream of Embedding
 
 ### 1. Create your repository
 
-Click **Use this template**, give the repository a name, and clone it.
+On GitHub, click **Use this template** → **Create a new repository** and give it a name. Then clone your new repository to your computer:
 
-### 2. Evict the penguins
+```bash
+git clone https://github.com/<username>/<repo>.git
+cd <repo>
+```
+
+### 2. Clear out the demo paper
+
+Your new repository starts as a copy of the demo paper. In the cloned folder on your computer, run the setup script once:
 
 ```bash
 python3 scripts/setup.py
 ```
 
-This removes the demo content and gives you clean starter files.
+This swaps the demo content for blank starter files and replaces this README with a short one for your paper. Commit the result before you start editing.
 
 ### 3. Add your paper
 
